@@ -33,31 +33,15 @@ def on_forever():
         if BlueButton == 0:
             pins.digital_write_pin(DigitalPin.P8, 1)
             pins.digital_write_pin(DigitalPin.P12, 0)
-        else:
+            serial.write_line("If, BlueButton:" + ("" + str(BlueButton)))
+        elif BlueButton == 1:
             pins.digital_write_pin(DigitalPin.P8, 0)
             pins.digital_write_pin(DigitalPin.P12, 0)
             redValue = envirobit.get_red()
             blueValue = envirobit.get_blue()
             greenValue = envirobit.get_green()
-            # Red
-            if 185 >= redValue and redValue >= 151 and (57 >= blueValue and blueValue >= 35) and (56 >= greenValue and greenValue >= 38):
-                pass
-            # Blue
-            elif 185 >= redValue and redValue >= 151 and (57 >= blueValue and blueValue >= 35) and (56 >= greenValue and greenValue >= 38):
-                pass
-            # Green
-            elif 185 >= redValue and redValue >= 151 and (57 >= blueValue and blueValue >= 35) and (56 >= greenValue and greenValue >= 38):
-                pass
-            # Yellow
-            elif 185 >= redValue and redValue >= 151 and (57 >= blueValue and blueValue >= 35) and (56 >= greenValue and greenValue >= 38):
-                pass
-            # Black
-            elif 185 >= redValue and redValue >= 151 and (57 >= blueValue and blueValue >= 35) and (56 >= greenValue and greenValue >= 38):
-                pass
-            # White
-            elif 185 >= redValue and redValue >= 151 and (57 >= blueValue and blueValue >= 35) and (56 >= greenValue and greenValue >= 38):
-                pass
-            # Unknown
-            else:
-                pass
+            BlueButton = -1
+            serial.write_line("Else if, BlueButton:" + ("" + str(BlueButton)))
+        else:
+            serial.write_line("Else, BlueButton:" + ("" + str(BlueButton)))
 basic.forever(on_forever)

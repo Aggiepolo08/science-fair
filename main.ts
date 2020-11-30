@@ -27,12 +27,17 @@ basic.forever(function () {
         if (BlueButton == 0) {
             pins.digitalWritePin(DigitalPin.P8, 1)
             pins.digitalWritePin(DigitalPin.P12, 0)
-        } else {
+        } else if (BlueButton == 1) {
             pins.digitalWritePin(DigitalPin.P8, 0)
             pins.digitalWritePin(DigitalPin.P12, 0)
             redValue = envirobit.getRed()
             blueValue = envirobit.getBlue()
             greenValue = envirobit.getGreen()
+            serial.writeLine("Move trap door")
+            basic.pause(2000)
+            serial.writeLine("RedValue:" + ("" + redValue))
+            serial.writeLine("BlueValue: " + ("" + blueValue))
+            serial.writeLine("GreenValue:" + ("" + greenValue))
             // Red
             // Blue
             // Green
@@ -41,21 +46,21 @@ basic.forever(function () {
             // White
             // Unknown
             if (185 >= redValue && redValue >= 151 && (57 >= blueValue && blueValue >= 35) && (56 >= greenValue && greenValue >= 38)) {
-                pins.servoWritePin(AnalogPin.P7, 0)
+                serial.writeLine("Red cup")
             } else if (66 >= redValue && redValue >= 21 && (147 >= blueValue && blueValue >= 108) && (79 >= greenValue && greenValue >= 68)) {
-                pins.servoWritePin(AnalogPin.P7, 0)
+                serial.writeLine("Blue cup")
             } else if (104 >= redValue && redValue >= 31 && (76 >= blueValue && blueValue >= 59) && (137 >= greenValue && greenValue >= 80)) {
-                pins.servoWritePin(AnalogPin.P7, 0)
+                serial.writeLine("Green cup")
             } else if (255 >= redValue && redValue >= 102 && (101 >= blueValue && blueValue >= 32) && (255 >= greenValue && greenValue >= 78)) {
-                pins.servoWritePin(AnalogPin.P7, 0)
+                serial.writeLine("Yellow cup")
             } else if (92 >= redValue && redValue >= 63 && (89 >= blueValue && blueValue >= 72) && (103 >= greenValue && greenValue >= 77)) {
-                pins.servoWritePin(AnalogPin.P7, 0)
+                serial.writeLine("Black cup")
             } else if (255 >= redValue && redValue >= 104 && (255 >= blueValue && blueValue >= 116) && (255 >= greenValue && greenValue >= 104)) {
-                pins.servoWritePin(AnalogPin.P7, 0)
+                serial.writeLine("White cup")
             } else {
-                pins.servoWritePin(AnalogPin.P7, 0)
+                serial.writeLine("Unknown cup ")
             }
-            pins.servoWritePin(AnalogPin.P9, 100)
+            pins.servoWritePin(AnalogPin.P0, 39)
         }
     }
 })
