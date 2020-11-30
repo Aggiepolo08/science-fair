@@ -20,11 +20,14 @@ RunProject = false
 redValue = -1
 blueValue = -1
 greenValue = -1
+pins.servoWritePin(AnalogPin.P0, 115)
 basic.forever(function () {
     while (RunProject == true) {
         basic.showIcon(IconNames.Heart)
         BlueButton = pins.digitalReadPin(DigitalPin.P5)
         if (BlueButton == 0) {
+            pins.servoWritePin(AnalogPin.P0, 115)
+            basic.pause(1000)
             pins.digitalWritePin(DigitalPin.P8, 1)
             pins.digitalWritePin(DigitalPin.P12, 0)
         } else if (BlueButton == 1) {
@@ -60,7 +63,7 @@ basic.forever(function () {
             } else {
                 serial.writeLine("Unknown cup ")
             }
-            pins.servoWritePin(AnalogPin.P0, 39)
+            pins.servoWritePin(AnalogPin.P0, 0)
         }
     }
 })
